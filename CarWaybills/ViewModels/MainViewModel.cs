@@ -1,74 +1,56 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using CarWaybills.Scripts.Services;
+using DevExpress.Mvvm;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace CarWaybills.ViewModels
 {
-    class MainViewModel : ViewModelBase
+    public class MainViewModel : BindableBase
     {
-        private Page carsPage;
-        private Page waybillsPage;
+        private readonly PageService _pageService;
 
-        private Page currentPage;
-        public Page CurrentPage { 
-            get { return currentPage; }
-            set { 
-                currentPage = value;
-                RaisePropertyChanged(() => CurrentPage);
-        }   }
+        public Page PageSource { get; set; }
 
-        private double frameOpacity;
-        public double FrameOpacity { get { return frameOpacity; } set { frameOpacity = value; RaisePropertyChanged(() => CurrentPage); } }
-
-
-        public MainViewModel()
+        public MainViewModel(PageService pageService)
         {
-            carsPage = new Page();
-            waybillsPage = new Page();
+            _pageService = pageService;
 
-            FrameOpacity = 1;
-            CurrentPage = carsPage;
+
+            _pageService.OnPageChanged += (page) => PageSource = page;
+            _pageService.ChangePage(new CarsPage());
         }
 
-        public ICommand bMenuCarsPage_Click
-        {
-            get
-            {
-                return new RelayCommand(() => SlowOpacity(carsPage));
-            }
-        }
+        //public ICommand bMenuCarsPage_Click
+        //{
+        //    get
+        //    {
+        //        return new RelayCommand(() => SlowOpacity(carsPage));
+        //    }
+        //}
 
-        public ICommand bMenuWaybillsPage_Click
-        {
-            get
-            {
-                return new RelayCommand(() => SlowOpacity(waybillsPage));
-            }
-        }
+        //public ICommand bMenuWaybillsPage_Click
+        //{
+        //    get
+        //    {
+        //        return new RelayCommand(() => SlowOpacity(waybillsPage));
+        //    }
+        //}
 
-        private async void SlowOpacity(Page page)
-        {
-            await Task.Factory.StartNew(() =>
-            {
-                for (double i = 1.0; i>0.0; i -= 0.1)
-                {
-                    FrameOpacity = i;
-                    Thread.Sleep(50);
-                }
-                CurrentPage = page;
-                for (double i =0.0; i< 1.0; i += 0.1)
-                {
-                    FrameOpacity = i;
-                    Thread.Sleep(50);
-                }
-            });
-        }
+        //private async void SlowOpacity(Page page)
+        //{
+        //    await Task.Factory.StartNew(() =>
+        //    {
+        //        for (double i = 1.0; i > 0.0; i -= 0.1)
+        //        {
+        //            FrameOpacity = i;
+        //            Thread.Sleep(50);
+        //        }
+        //        CurrentPage = page;
+        //        for (double i = 0.0; i < 1.0; i += 0.1)
+        //        {
+        //            FrameOpacity = i;
+        //            Thread.Sleep(50);
+        //        }
+        //    });
+        //}
     }
 }
