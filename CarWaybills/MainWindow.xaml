@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarWaybills"
-              mc:Ignorable="d"
+        mc:Ignorable="d"
+        DataContext="{Binding MainViewModel, Source={StaticResource ViewModelLocator}}"
         Title="Учет путевых листов и движения ГСМ" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" MinWidth="800" MinHeight="450">
     <Grid Background="#FF232323">
         <Grid x:Name="panelHeader" VerticalAlignment="Top" Height="50" Background="#FF373737">
@@ -13,7 +14,7 @@
         <!--Фрейм с подгружаемыми сценами-->
         <Frame 
             x:Name="FrameContent" Margin="50,50,0,0" Background="White"
-            Content="{Binding CurrentPage}"
+            Content="{Binding PageSource}"
             NavigationUIVisibility="Hidden"
             Opacity="{Binding FrameOpacity}" />
         <Grid x:Name="sidePanel" Background="#FF333333" HorizontalAlignment="Left" Width="50">

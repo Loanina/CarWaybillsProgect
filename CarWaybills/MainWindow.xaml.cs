@@ -26,7 +26,6 @@ namespace CarWaybills
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
     }
 }

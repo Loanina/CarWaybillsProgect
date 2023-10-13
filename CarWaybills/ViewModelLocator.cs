@@ -2,7 +2,7 @@
 using CarWaybills.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CarWaybills.Scripts
+namespace CarWaybills
 {
     public class ViewModelLocator
     {
@@ -19,8 +19,6 @@ namespace CarWaybills.Scripts
             services.AddSingleton<PageService>();
             services.AddSingleton<EventBus>();
             services.AddSingleton<MessageBus>();
-
-
 
             _provider = services.BuildServiceProvider();
 
