@@ -1,6 +1,8 @@
 ﻿using CarWaybills.Scripts.Services;
+using CarWaybills.Scripts.Services.Animations;
 using DevExpress.Mvvm;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace CarWaybills.ViewModels
 {
@@ -10,6 +12,8 @@ namespace CarWaybills.ViewModels
 
         public Page PageSource { get; set; }
 
+       // public double FrameOpacity { get; set; }
+
         public MainViewModel(PageService pageService)
         {
             _pageService = pageService;
@@ -18,6 +22,20 @@ namespace CarWaybills.ViewModels
             _pageService.OnPageChanged += (page) => PageSource = page;
             _pageService.ChangePage(new CarsPage());
         }
+
+        public ICommand bMenuCars_Click => new DelegateCommand(() =>
+        {
+            //PageAnimation.DescOpacity(FrameOpacity);
+            _pageService.ChangePage(new CarsPage());
+           // PageAnimation.IncOpacity(FrameOpacity);
+        });
+
+        public ICommand bMenuWaybills_Click => new DelegateCommand(() =>
+        {
+            //  PageAnimation.DescOpacity(FrameOpacity);
+            _pageService.ChangePage(new WaybillsPage());
+            // PageAnimation.IncOpacity(FrameOpacity);
+        });
 
         //public ICommand bMenuCarsPage_Click
         //{

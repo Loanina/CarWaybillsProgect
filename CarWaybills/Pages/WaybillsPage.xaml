@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:CarWaybills"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{Binding WaybillViewModel, Source={StaticResource ViewModelLocator}}"
       Title="WaybillsPage">
-
     <Grid Background="Yellow">
         
     </Grid>
